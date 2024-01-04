@@ -1,111 +1,107 @@
 chain = "mainnet"
-# identity = "node_name"
+# identity = "localhost"
 # log-level = "INFO"
 datadir = "/var/lib/bor/data"
-# ancient = ""
-# keystore = ""
+#keystore = ""
 syncmode = "full"
+# ancient = ""
 # gcmode = "full"
-# snapshot = true
-# ethstats = ""
+#snapshot = true
+# "bor.logs" = false
+#ethstats = ""
 
-# ["eth.requiredblocks"]
+["eth.requiredblocks"]
 
 [p2p]
-    maxpeers = 20
-    port = 30303
-    # maxpendpeers = 50
-    # bind = "0.0.0.0"
-    # nodiscover = false
-    # nat = "any"
-     [p2p.discovery]
-        # v5disc = false
-         bootnodes = []
-        # bootnodesv4 = []
-        # bootnodesv5 = []
-         static-nodes = []
-         trusted-nodes = []
-        # dns = []
+  maxpeers = 5
+#   maxpendpeers = 50
+#   bind = "0.0.0.0"
+  port = 30303
+  nodiscover = true
+#   nat = "any"
+  [p2p.discovery]
+#     v5disc = false
+#     bootnodes = []
+#     bootnodesv4 = []
+#     bootnodesv5 = []
+    static-nodes = ["enode://sentry_machine_enodeID_1@sentry_machine_ip:30303","enode://sentry_machine_enodeID_2@sentry_machine_ip:30303","enode://sentry_machine_enodeID_3@sentry_machine_ip:30303"]
+    trusted-nodes = ["enode://sentry_machine_enodeID_1","enode://sentry_machine_enodeID_2", "enode://sentry_machine_enodeID_3"]
+#     dns = []
 
-# [heimdall]
-    # url = "http://localhost:1317"
-    # "bor.without" = false
-    # grpc-address = ""
+[heimdall]
+#   url = "http://localhost:1317"
+#   "bor.without" = false
 
 [txpool]
-    nolocals = true
-    pricelimit = 30000000000
-    accountslots = 16
-    globalslots = 32768
-    accountqueue = 16
-    globalqueue = 32768
-    lifetime = "1h30m0s"
-    # locals = []
-    # journal = ""
-    # rejournal = "1h0m0s"
-    # pricebump = 10
+#   locals = []
+  nolocals = true
+#   journal = "transactions.rlp"
+#   rejournal = "1h0m0s"
+  pricelimit = 30000000000
+#   pricebump = 10
+  accountslots = 16
+  globalslots = 32768
+  accountqueue = 16
+  globalqueue = 32768
+  lifetime = "1h30m0s"
 
 [miner]
-    gaslimit = 30000000
-    gasprice = "30000000000"
-    # mine = false
-    # etherbase = ""
-    # extradata = ""
+  mine = true
+  etherbase = "0x"
+#   extradata = ""
+  gaslimit = 30000000
+  gasprice = "30000000000"
 
 [jsonrpc]
-    ipcpath = "/var/lib/bor/bor.ipc"
-    # ipcdisable = false
-    # gascap = 50000000
-    # txfeecap = 5.0
-    [jsonrpc.http]
-        enabled = true
-        port = 8545
-        host = "127.0.0.1"
-        api = ["eth", "net", "web3", "txpool", "bor"]
-        vhosts = ["*"]
-        corsdomain = ["*"]
-        # prefix = ""
-    # [jsonrpc.ws]
-        # enabled = false
-        # port = 8546
-        # prefix = ""
-        # host = "localhost"
-        # api = ["web3", "net"]
-        # origins = ["*"]
-    # [jsonrpc.graphql]
-        # enabled = false
-        # port = 0
-        # prefix = ""
-        # host = ""
-        # vhosts = ["*"]
-        # corsdomain = ["*"]
-    # [jsonrpc.timeouts]
-        # read = "30s"
-        # write = "30s"
-        # idle = "2m0s"
+#   ipcdisable = false
+  ipcpath = "/var/lib/bor/data/bor.ipc"
+#   gascap = 50000000
+#   txfeecap = 5.0
+  [jsonrpc.http]
+    enabled = true
+    port = 8545
+#     prefix = ""
+    host = "127.0.0.1"
+    api = ["eth", "net", "web3", "txpool", "bor"]
+    vhosts = ["localhost"]
+    corsdomain = ["localhost"]
+  [jsonrpc.ws]
+     enabled = true
+     port = 8546
+#     prefix = ""
+     host = "127.0.0.1"
+     api = ["net", "web3","eth","txpool","bor"]
+     origins = ["*"]
+  [jsonrpc.graphql]
+#     enabled = false
+#     port = 0
+#     prefix = ""
+#     host = ""
+#     vhosts = ["localhost"]
+#     corsdomain = ["localhost"]
 
 [gpo]
-    # blocks = 20
-    # percentile = 60
-    # maxprice = "5000000000000"
-    ignoreprice = "30000000000"
+#   blocks = 20
+#   percentile = 60
+#   maxprice = "5000000000000"
+#   ignoreprice = "2"
 
 [telemetry]
-    metrics = true
-    # expensive = false
-    # prometheus-addr = ""
-    # opencollector-endpoint = ""
-    # [telemetry.influx]
-        # influxdb = false
-        # endpoint = ""
-        # database = ""
-        # username = ""
-        # password = ""
-        # influxdbv2 = false
-        # token = ""
-        # bucket = ""
-        # organization = ""
-    # [telemetry.influx.tags]
+#  metrics = true
+#   expensive = false
+#  prometheus-addr = "0.0.0.0:7071"
+#   opencollector-endpoint = "127.0.0.1:4317"
+  [telemetry.influx]
+#     influxdb = false
+#     endpoint = ""
+#     database = ""
+#     username = ""
+#     password = ""
+#     influxdbv2 = false
+#     token = ""
+#     bucket = ""
+#     organization = ""
+    [telemetry.influx.tags]
 
 [cache]
     cache = 4096
@@ -120,16 +116,17 @@ syncmode = "full"
     # txlookuplimit = 2350000
     # timeout = "1h0m0s"
 
-# [accounts]
-    # unlock = []
-    # password = ""
-    # allow-insecure-unlock = false
-    # lightkdf = false
-    # disable-bor-wallet = false
+[accounts]
+  unlock = ["0x"]
+  password = "/var/lib/bor/password.txt"
+  allow-insecure-unlock = true
+#   lightkdf = false
+#   disable-bor-wallet = true
 
-# [grpc]
-    # addr = ":3131"
+[grpc]
+#   addr = ":3131"
 
-# [developer]
-    # dev = false
-    # period = 0
+[developer]
+#   dev = false
+#   period = 0
+

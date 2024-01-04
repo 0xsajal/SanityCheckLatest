@@ -9,8 +9,6 @@ export async function checkOpenPorts(ports: string[]) {
 
     // Execute the command to check open ports using child_process.execSync
     const result = child_process.execSync(openPortsCommand, { encoding: 'utf-8' });
-    console.log(typeof result)
-    console.log(result)
 
     // Log open ports or errors
     if (result) {

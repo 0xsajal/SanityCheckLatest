@@ -5,8 +5,7 @@
     "description": "A script for checking configurations and system settings",
     "main": "index.js",
     "scripts": {
-        "start": "tsx index.ts",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "sanitycheck": "tsx index.ts"
     },
     "author": "Your Name",
     "license": "MIT",
@@ -22,7 +21,7 @@
     },
     "devDependencies": {
         "@types/diff": "^5.0.7",
-        "@types/node": "^20.8.9",
+        "@types/node": "^20.10.6",
         "ts-node": "^10.9.2",
         "tsconfig-paths": "^4.2.0",
         "tsx": "^4.6.1",

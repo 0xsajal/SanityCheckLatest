@@ -12,8 +12,7 @@ export function startLogging() {
   const scriptURL = import.meta.url;
   const scriptPath = new URL(scriptURL).pathname;
   const projectDirectory = path.dirname(scriptPath);
-  const logDirectory = path.join(projectDirectory, 'logs');
-
+  const logDirectory = path.join(projectDirectory, '../logs');
   // Ensure the logs directory exists, create it if it doesn't
   if (!fs.existsSync(logDirectory)) {
     fs.mkdirSync(logDirectory);
@@ -42,10 +41,3 @@ export function stopLogging() {
   }
 }
 
-// Usage example:
-startLogging();
-logActivity('Logging started.');
-// ... Perform your application's tasks and log activities
-logActivity('An activity to log.');
-// ...
-stopLogging();

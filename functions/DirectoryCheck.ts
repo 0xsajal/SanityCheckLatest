@@ -12,16 +12,16 @@ export async function checkDataDirectory() {
     await fs.promises.access(heimdallDataDirectory, fs.constants.R_OK | fs.constants.W_OK);
 
     // If no errors were thrown, the directories exist
-    //  logActivity('Bor and Heimdall data directories exist.');
-    console.log('Bor and Heimdall data directories exist.');
+     logActivity('Bor and Heimdall data directories exist.');
+    // console.log('Bor and Heimdall data directories exist.');
   } catch (error: any) 
   { // Type assertion to 'any'
     if (error.code === 'ENOENT') {
-      //  logActivity('Data directory does not exist.');
-      console.log('Data directory does not exist.');
+       logActivity('Data directory does not exist.');
+      // console.log('Data directory does not exist.');
     } else {
       console.error('Error checking data directory:', error);
-      //  logActivity(`Error checking data directory: ${error.message}`);
+       logActivity(`Error checking data directory: ${error.message}`);
     }
   }
 }

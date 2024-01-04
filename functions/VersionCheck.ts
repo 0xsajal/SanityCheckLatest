@@ -13,15 +13,13 @@ export async function checkServiceVersion() {
 
     // Check and log service versions or errors
     if (borStdout && heimdallStdout) {
-      //  logActivity(`Bor version = ${borVersionCommand} and Heimdall version = ${heimdallVersionCommand}:\nBor: ${borStdout}\nHeimdall: ${heimdallStdout}`);
-       console.log(`Bor: ${borStdout} \n Heimdall: ${heimdallStdout}`);
+       logActivity(`Bor Version Details: ${borStdout}\nHeimdall Version Details: ${heimdallStdout}`)
       } else {
-      //  logActivity(`No version information available for Bor and Heimdall nodes.`);
-       console.log(`No version information available for Bor and Heimdall nodes.`);
+       logActivity(`No version information available for Bor and Heimdall nodes.`);
     }
   } catch (error) {
     // Log any errors that occur
     console.error('Error checking versions:', error);
-    await logActivity('Error checking versions: ' + error.message);
+    logActivity('Error checking versions: ' + error.message);
   }
 }

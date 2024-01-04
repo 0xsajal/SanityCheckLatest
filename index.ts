@@ -4,6 +4,7 @@ import { checkAndAdjustPermissions } from './functions/PermissionCheck'
 import { checkOpenPorts } from './functions/PortCheck';
 import { checkServiceVersion } from './functions/VersionCheck';
 import { getAndLogCommandOutput } from './functions/CommandOutput';
+import { logActivity, startLogging, stopLogging } from './functions/Logging';
 
 
 /**
@@ -13,34 +14,38 @@ import { getAndLogCommandOutput } from './functions/CommandOutput';
 
 // Main function
 async function main(nodeType: string) {
+  
+  startLogging();
+  logActivity('Sanity Check Started');
+
     // Check and compare the configurations
-    console.log('1')
     await compareFiles(nodeType);
   
     // // Check data directories
-    // console.log('2')
-    // await checkDataDirectory();
+    await checkDataDirectory();
   
-    // // Check and adjust permissions
-    // console.log('3')
-    // await checkAndAdjustPermissions();
+    // Check and adjust permissions
+    await checkAndAdjustPermissions();
   
     // Check service versions
-    // await checkServiceVersion();
+    await checkServiceVersion();
   
     // Check open ports (22, 26656, and 30303)
-    // await checkOpenPorts(['22']);
-    // await checkOpenPorts(['26656']);
-    // await checkOpenPorts(['30303']);
+    await checkOpenPorts(['22']);
+    await checkOpenPorts(['26656']);
+    await checkOpenPorts(['30303']);
   
-    // // Get and log the output of specific commands
-    // await getAndLogCommandOutput(`curl http://localhost:8545 -X POST --data '{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["finalized", false],"id":1}' -H "Content-Type: application/json"`);
+    // Get and log the output of specific commands
+    await getAndLogCommandOutput(`curl http://localhost:8545 -X POST --data '{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["finalized", false],"id":1}' -H "Content-Type: application/json"`, "Port 8545 details:");
   
-    // await getAndLogCommandOutput('curl localhost:1317/checkpoints/latest', 'Latest checkpoint using cURL:');
+    await getAndLogCommandOutput('curl localhost:1317/checkpoints/latest', 'Port 1317 details:');
   
-    // // Get and log the latest 100 lines of Bor and Heimdall service logs
-    // await getAndLogCommandOutput('journalctl --unit=bor.service --no-pager -n 100');
-    // await getAndLogCommandOutput('journalctl --unit=heimdalld.service --no-pager -n 100');
+    // Get and log the latest 100 lines of Bor and Heimdall service logs
+    await getAndLogCommandOutput('journalctl -r --unit=bor.service --no-pager -n 100', "Bor logs:");
+    await getAndLogCommandOutput('journalctl -r --unit=heimdalld.service --no-pager -n 100', "Heimdall Logs");
+  logActivity('Sanity Check Finished');
+  stopLogging();
+
   }
   
   // Check if a valid node type is provided as a command-line argument
