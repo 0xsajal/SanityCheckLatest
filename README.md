@@ -2,8 +2,7 @@
 
 ### Versions used
 
-Node.js - v20.10.0
-nvm - 0.32.1
+Node.js - v20.10.0, nvm - 0.32.1
 
 ### Setup
 
