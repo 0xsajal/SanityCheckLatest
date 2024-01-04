@@ -22,7 +22,7 @@ npm install
 Run the following command to do a Sanity Check on your node setup:
 
 ```bash
-npm run sanitycheck <nodeType>
+npm run sanitycheck nodeType
 ```
 
 Please note that the nodeType will be sentry if you want to perform a Sanity Check on sentry/full nodes and validator if you want to perform a Sanity Check on validator node.
