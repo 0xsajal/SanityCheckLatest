@@ -25,7 +25,7 @@ Run the following command to do a Sanity Check on your node setup:
 npm run sanitycheck <nodeType>
 ```
 
-Please note that the <nodeType> will be sentry if you want to perform a Sanity Check on sentry/full nodes and validator if you want to perform a Sanity Check on validator node.
+Please note that the nodeType will be sentry if you want to perform a Sanity Check on sentry/full nodes and validator if you want to perform a Sanity Check on validator node.
 
 ### Logging
 
