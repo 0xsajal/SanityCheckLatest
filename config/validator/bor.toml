@@ -1,19 +1,18 @@
 chain = "mainnet"
-# identity = "localhost"
-# log-level = "INFO"
+log-level = "INFO"
 datadir = "/var/lib/bor/data"
-#keystore = ""
-syncmode = "full"
 # ancient = ""
+keystore = "/var/lib/bor/keystore"
+syncmode = "full"
 # gcmode = "full"
-#snapshot = true
+ snapshot = true
 # "bor.logs" = false
-#ethstats = ""
+ethstats = "ID:mainnet@bor-mainnet.vitwit.com:3000"
 
 ["eth.requiredblocks"]
 
 [p2p]
-  maxpeers = 5
+	 maxpeers = 5
 #   maxpendpeers = 50
 #   bind = "0.0.0.0"
   port = 30303
@@ -21,11 +20,11 @@ syncmode = "full"
 #   nat = "any"
   [p2p.discovery]
 #     v5disc = false
-#     bootnodes = []
+	 bootnodes = [ "Bootnodes" ]
 #     bootnodesv4 = []
 #     bootnodesv5 = []
-    static-nodes = ["enode://sentry_machine_enodeID_1@sentry_machine_ip:30303","enode://sentry_machine_enodeID_2@sentry_machine_ip:30303","enode://sentry_machine_enodeID_3@sentry_machine_ip:30303"]
-    trusted-nodes = ["enode://sentry_machine_enodeID_1","enode://sentry_machine_enodeID_2", "enode://sentry_machine_enodeID_3"]
+    static-nodes =  [ "Static Nodes" ]
+    trusted-nodes = [ "Trustned Nodes" ]
 #     dns = []
 
 [heimdall]
@@ -40,38 +39,38 @@ syncmode = "full"
   pricelimit = 30000000000
 #   pricebump = 10
   accountslots = 16
-  globalslots = 32768
-  accountqueue = 16
-  globalqueue = 32768
+  globalslots = 131072
+  accountqueue = 64
+  globalqueue = 131072
   lifetime = "1h30m0s"
 
 [miner]
   mine = true
-  etherbase = "0x"
+  etherbase = "ADDRESS"
 #   extradata = ""
   gaslimit = 30000000
   gasprice = "30000000000"
 
 [jsonrpc]
 #   ipcdisable = false
-  ipcpath = "/var/lib/bor/data/bor.ipc"
+  ipcpath = "/var/lib/bor/bor.ipc"
 #   gascap = 50000000
 #   txfeecap = 5.0
   [jsonrpc.http]
     enabled = true
     port = 8545
 #     prefix = ""
-    host = "127.0.0.1"
-    api = ["eth", "net", "web3", "txpool", "bor"]
-    vhosts = ["localhost"]
-    corsdomain = ["localhost"]
+    host = "0.0.0.0"
+	 api = ["eth", "net", "web3", "txpool", "debug", "bor"]
+    vhosts = ["*"]
+    corsdomain = ["*"]
   [jsonrpc.ws]
-     enabled = true
-     port = 8546
+     enabled = false
+#     port = 8546
 #     prefix = ""
-     host = "127.0.0.1"
-     api = ["net", "web3","eth","txpool","bor"]
-     origins = ["*"]
+#     host = "localhost"
+#     api = ["net", "web3"]
+#     origins = ["localhost"]
   [jsonrpc.graphql]
 #     enabled = false
 #     port = 0
@@ -79,6 +78,10 @@ syncmode = "full"
 #     host = ""
 #     vhosts = ["localhost"]
 #     corsdomain = ["localhost"]
+  [jsonrpc.timeouts]
+    read = "30s"
+    write = "30s"
+    idle = "2m0s"
 
 [gpo]
 #   blocks = 20
@@ -87,37 +90,31 @@ syncmode = "full"
 #   ignoreprice = "2"
 
 [telemetry]
-#  metrics = true
-#   expensive = false
-#  prometheus-addr = "0.0.0.0:7071"
-#   opencollector-endpoint = "127.0.0.1:4317"
-  [telemetry.influx]
-#     influxdb = false
-#     endpoint = ""
-#     database = ""
-#     username = ""
-#     password = ""
-#     influxdbv2 = false
-#     token = ""
-#     bucket = ""
-#     organization = ""
-    [telemetry.influx.tags]
+  metrics = true
+  expensive = true
+  prometheus-addr = "0.0.0.0:7071"
+# opencollector-endpoint = ""
+ #     cloud = "aws"
+ #     host = "anonymous-91"
+ #     ip = "34.217.171.158"
+ #     region = "us-east-2"
+ #     type = "validators"
 
 [cache]
-    cache = 4096
-    # gc = 25
-    # snapshot = 10
-    # database = 50
-    # trie = 15
-    # journal = "triecache"
-    # rejournal = "1h0m0s"
-    # noprefetch = false
-    # preimages = false
-    # txlookuplimit = 2350000
-    # timeout = "1h0m0s"
+ cache = 4096
+#   gc = 25
+#   snapshot = 10
+#   database = 50
+#   trie = 15
+#   journal = "triecache"
+#   rejournal = "1h0m0s"
+#   noprefetch = false
+#   preimages = false
+#   txlookuplimit = 2350000
+  timeout = "1h0m0s"
 
 [accounts]
-  unlock = ["0x"]
+  unlock = ["ADDRESS"]
   password = "/var/lib/bor/password.txt"
   allow-insecure-unlock = true
 #   lightkdf = false
@@ -129,4 +126,3 @@ syncmode = "full"
 [developer]
 #   dev = false
 #   period = 0
-

@@ -8,7 +8,7 @@
 proxy_app = "tcp://127.0.0.1:26658"
 
 # A custom human readable name for this node
-moniker = "Sentry-Node"
+moniker = "Moniker"
 
 # If this node is many blocks behind the tip of the chain, FastSync
 # allows them to catchup quickly by downloading blocks in parallel
@@ -155,12 +155,13 @@ laddr = "tcp://0.0.0.0:26656"
 # If empty, will use the same port as the laddr,
 # and will introspect on the listener or use UPnP
 # to figure out the address.
-external_address = "tcp://65.108.78.187:26656"
+external_address = "External Address"
 
 # Comma separated list of seed nodes to connect to
-seeds = "seeds@ip:26656"
+seeds = "Seeds Value"
+
 # Comma separated list of nodes to keep persistent connections to
-persistent_peers = "nodeID_sentry_2@machine_ip:26656,nodeID_sentry_3@machine_ip:26656"
+persistent_peers = "Persistent Peers Value"
 
 # UPNP port forwarding
 upnp = false
@@ -173,10 +174,10 @@ addr_book_file = "config/addrbook.json"
 addr_book_strict = true
 
 # Maximum number of inbound peers
-max_num_inbound_peers = 180
+max_num_inbound_peers = 100
 
 # Maximum number of outbound peers to connect to, excluding persistent peers
-max_num_outbound_peers = 180
+max_num_outbound_peers = 100
 
 # Time to wait before flushing messages out on the connection
 flush_throttle_timeout = "100ms"
@@ -185,10 +186,10 @@ flush_throttle_timeout = "100ms"
 max_packet_msg_payload_size = 1024
 
 # Rate at which packets can be sent, in bytes/second
-send_rate = 9820000
+send_rate = 5120000
 
 # Rate at which packets can be received, in bytes/second
-recv_rate = 9820000
+recv_rate = 5120000
 
 # Set true to enable the peer-exchange reactor
 pex = true
@@ -200,7 +201,7 @@ pex = true
 seed_mode = false
 
 # Comma separated list of peer IDs to keep private (will not be gossiped to other peers)
-private_peer_ids = "nodeID_validator"
+private_peer_ids = ""
 
 # Toggle to disable guard against peers connecting from the same ip.
 allow_duplicate_ip = false
@@ -305,8 +306,7 @@ prometheus_listen_addr = ":26660"
 # If you want to accept a larger number than the default, make sure
 # you increase your OS limits.
 # 0 - unlimited.
-max_open_connections = 150
+max_open_connections = 3
 
 # Instrumentation namespace
 namespace = "tendermint"
-

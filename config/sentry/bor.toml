@@ -1,30 +1,43 @@
 chain = "mainnet"
-# identity = "node_name"
-# log-level = "INFO"
+# verbosity = 3
+# vmdebug = false
 datadir = "/var/lib/bor/data"
-#ancient = ""
+# ancient = ""
 # keystore = ""
+# "rpc.batchlimit" = 100
+# "rpc.returndatalimit" = 100000
 syncmode = "full"
 # gcmode = "full"
 # snapshot = true
-# ethstats = ""
+ethstats = "Optional"
+# devfakeauthor = false
 
 # ["eth.requiredblocks"]
 
+# [log]
+    # vmodule = ""
+    # json = false
+    # backtrace = ""
+    # debug = true
+
 [p2p]
-    maxpeers = 100
+	 maxpeers = 50
     port = 30303
     # maxpendpeers = 50
     # bind = "0.0.0.0"
     # nodiscover = false
     # nat = "any"
-     [p2p.discovery]
+    # netrestrict = ""
+    # nodekey = ""
+    # nodekeyhex = ""
+    # txarrivalwait = "500ms"
+  [p2p.discovery] 
         # v5disc = false
-         bootnodes = ["enode://enodeID@ip:30303"]
-       # bootnodesv4 = []
+	 bootnodes = [ "Bootnodes Value" ]
+        # bootnodesv4 = []
         # bootnodesv5 = []
-        static-nodes = ["enode://sentry_machine_enodeID_2@sentry_machine_ip:30303","enode://sentry_machine_enodeID_3@sentry_machine_ip:30303"]
-        trusted-nodes = ["enode://sentry_machine_enodeID_2", "enode://sentry_machine_enodeID_3" ]
+	 static-nodes =  [ "Static Nodes Value" ]
+        # trusted-nodes = [ "Trusted Nodes Value" ]
         # dns = []
 
 # [heimdall]
@@ -51,12 +64,16 @@ syncmode = "full"
     # mine = false
     # etherbase = ""
     # extradata = ""
+    # recommit = "2m5s"
+    # commitinterrupt = true
 
 [jsonrpc]
     ipcpath = "/var/lib/bor/bor.ipc"
     # ipcdisable = false
     # gascap = 50000000
+    # evmtimeout = "5s"
     # txfeecap = 5.0
+    # allow-unprotected-txs = false
     [jsonrpc.http]
         enabled = true
         port = 8545
@@ -65,38 +82,47 @@ syncmode = "full"
         vhosts = ["*"]
         corsdomain = ["*"]
         # prefix = ""
-     [jsonrpc.ws]
-        enabled = true
-        port = 8546
+        # ep-size = 40
+        # ep-requesttimeout = "0s"
+    # [jsonrpc.ws]
+        # enabled = false
+        # port = 8546
         # prefix = ""
-         host = "127.0.0.1"
-         api = ["eth", "net", "web3", "txpool", "bor"]
-        # vhosts = ["*"]
-        # corsdomain = ["*"]
-         origins = ["*"]
+        # host = "localhost"
+        # api = ["web3", "net"]
+        # origins = ["*"]
+        # ep-size = 40
+        # ep-requesttimeout = "0s"
     # [jsonrpc.graphql]
-     #   enabled = true
-      #   port = 8547
+        # enabled = false
+        # port = 0
         # prefix = ""
-       #  host = "0.0.0.0"
+        # host = ""
         # vhosts = ["*"]
         # corsdomain = ["*"]
+    # [jsonrpc.auth]
+        # jwtsecret = ""
+        # addr = "localhost"
+        # port = 8551
+        # vhosts = ["localhost"]
     # [jsonrpc.timeouts]
-        # read = "30s"
+        # read = "10s"
         # write = "30s"
         # idle = "2m0s"
 
 [gpo]
     # blocks = 20
     # percentile = 60
+    # maxheaderhistory = 1024
+    # maxblockhistory = 1024
     # maxprice = "5000000000000"
     ignoreprice = "30000000000"
 
 [telemetry]
     metrics = true
     # expensive = false
-    #prometheus-addr = "0.0.0.0:7071"
-    # opencollector-endpoint = ""
+    # prometheus-addr = ""
+# opencollector-endpoint = ""
     # [telemetry.influx]
         # influxdb = false
         # endpoint = ""
@@ -121,6 +147,7 @@ syncmode = "full"
     # preimages = false
     # txlookuplimit = 2350000
     # timeout = "1h0m0s"
+    # fdlimit = 0
 
 # [accounts]
     # unlock = []
@@ -135,4 +162,11 @@ syncmode = "full"
 # [developer]
     # dev = false
     # period = 0
+    # gaslimit = 11500000
 
+# [pprof]
+#   pprof = false
+#   port = 6060
+#   addr = "127.0.0.1"
+#   memprofilerate = 524288
+#   blockprofilerate = 0
