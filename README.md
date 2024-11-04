@@ -6,7 +6,7 @@ Node.js - v20.10.0, nvm - 0.32.1
 
 ### Setup
 
-Clone the repository on the server where you have your node setup done. If you are not using the defaut directories for installation of bor and heimdall, please modify the directories you are using in each of the functions under functions folder.
+Clone the repository on the server where you have your node setup done. If you are not using the default directories for installation of bor and heimdall, please modify the directories you are using in each of the functions under functions folder.
 
 NOTE: Functions execAsync, Logging, CommandOutput, PortCheck and VersionCheck does not need any modifications.
 
